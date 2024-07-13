@@ -1,0 +1,39 @@
+\documentclass{whiteboard}
+% Important, this paper size, must be exactly the area encompassed
+% by the initial clipping rectangle we are doing on the first tikz line.
+\geometry{paperwidth=12cm, paperheight=12cm}
+
+\begin{document}
+\begin{frame}[plain]
+\begin{tikzpicture}
+    % This clip must be exactly the size of the paper
+    \clip (-6,-6) rectangle (6,6);
+
+    \onslide<2>{
+        \draw[help lines] (-4.9, -4.9) grid (4.9, 4.9);
+    }
+    \draw[stealth-stealth] (-5, 0) -- (5, 0) node[right] {$x$};
+    \path[name path=xaxis] (-5, 0) -- (5, 0);
+    \draw[stealth-stealth] (0, -5) -- (0, 5) node[above] {$y$};
+    \path[name path=yaxis] (0, -5) -- (0, 5);
+    % this clip is to draw things only inside the cartesian plane
+    \clip (-5,-5) rectangle (5,5);
+
+    \coordinate (A) at (-1, -3);
+    \coordinate (B) at (2, 1);
+    
+    % Draw your content
+    \onslide<3-> {
+       \draw[fill] (A) circle (2pt);
+    }
+    \onslide<4-> {
+       \draw[fill] (B) circle (2pt);
+    }
+    \onslide<5> {
+       \draw[dashed] (A) to (B); 
+    }
+
+
+\end{tikzpicture}
+\end{frame}
+\end{document}
